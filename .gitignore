@@ -104,3 +104,7 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/node,macos,vim
+
+# webpack bundled js file
+bundle.js
+
