@@ -1,0 +1,29 @@
+{
+  "name": "vr-voxel",
+  "version": "0.0.0-dev",
+  "description": "Voxel graphics on VR. Written in JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sohnryang/vr-voxel.git"
+  },
+  "keywords": [
+    "voxel",
+    "vr",
+    "javascript",
+    "threejs",
+    "webvr"
+  ],
+  "author": "Sohn Ryang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sohnryang/vr-voxel/issues"
+  },
+  "homepage": "https://github.com/sohnryang/vr-voxel#readme",
+  "dependencies": {
+    "three": "^0.86.0"
+  }
+}
