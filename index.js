@@ -1,2 +1,4 @@
-'use strict';
+import DemoVR from './demo-vr.js';
+
+new DemoVR();
 
