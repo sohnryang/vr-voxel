@@ -6,6 +6,7 @@
     "loadEagerly": [
     ],
     "plugins": {
-        "three": {}
+        "es_modules": {},
+        "threejs": {}
     }
 }
