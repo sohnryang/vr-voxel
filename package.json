@@ -37,6 +37,7 @@
     "eslint-plugin-import": "^2.7.0",
     "stylish": "^1.0.0",
     "stylus": "^0.54.5",
+    "tern": "^0.21.0",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"
   }
