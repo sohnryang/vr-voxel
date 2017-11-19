@@ -1,0 +1,10 @@
+{
+	"files": [
+		"ts/app.ts",
+		"ts/app-vr.ts",
+		"ts/main.ts"
+	],
+	"compilerOptions": {
+		"target": "es5"
+	}
+}
