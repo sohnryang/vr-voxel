@@ -4,7 +4,8 @@
   "description": "Voxel graphics on VR. Written in JS.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "gulp",
+    "start": "http-server ./bundle",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,7 +32,12 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "browserify": "^14.5.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.2",
+    "tsify": "^3.0.3",
     "typescript": "^2.5.3",
+    "vinyl-source-stream": "^1.1.0",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.7.1"
   },
