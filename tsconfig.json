@@ -2,7 +2,9 @@
 	"files": [
 		"ts/app.ts",
 		"ts/app-vr.ts",
-		"ts/main.ts"
+		"ts/main.ts",
+        "ts/voxel-data.ts",
+        "ts/voxel-material.ts"
 	],
 	"compilerOptions": {
 		"target": "es5"
