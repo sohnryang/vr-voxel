@@ -1,5 +1,7 @@
 import * as THREE from "three";
 
+import { VoxelData } from "./voxel-data";
+
 export class App {
     protected camera: THREE.PerspectiveCamera;
     protected height: number;
@@ -11,14 +13,17 @@ export class App {
     private cube: THREE.Mesh;
     private geometry: THREE.BoxGeometry;
     private light: THREE.PointLight;
-    private material: THREE.MeshBasicMaterial;
+    private material: THREE.MeshStandardMaterial;
+    private voxels: VoxelData[];
+    private mergedGeometry: THREE.Geometry;
 
-    constructor() {
+    constructor(voxels: VoxelData[]) {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
+        this.voxels = voxels;
         this.initScene();
         this.update = this.update.bind(this);
         requestAnimationFrame(this.update);
@@ -57,7 +62,7 @@ export class App {
 
     private initScene() {
         this.geometry = new THREE.BoxGeometry(1, 1, 1);
-        this.material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        this.material = new THREE.MeshStandardMaterial({color: 0x00ff00});
         this.cube = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.cube);
         this.light = new THREE.PointLight(0xffffff, 2, 100);
