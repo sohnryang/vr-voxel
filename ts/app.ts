@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { VoxelData } from "./voxel-data";
+import { MATERIAL_LIST, VoxelMaterial } from "./voxel-material";
 
 export class App {
     protected camera: THREE.PerspectiveCamera;
@@ -10,12 +11,14 @@ export class App {
     protected width: number;
 
     private aspect: number;
-    private cube: THREE.Mesh;
     private geometry: THREE.BoxGeometry;
-    private light: THREE.PointLight;
+    private light: THREE.DirectionalLight;
     private material: THREE.MeshStandardMaterial;
     private voxels: VoxelData[];
+    private voxelMaterials: THREE.MeshLambertMaterial[][];
+    private voxelMesh: THREE.Mesh;
     private mergedGeometry: THREE.Geometry;
+    private mergedMesh: THREE.Mesh;
 
     constructor(voxels: VoxelData[]) {
         this.scene = new THREE.Scene();
@@ -24,14 +27,14 @@ export class App {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
         this.voxels = voxels;
+        this.mergedGeometry = new THREE.Geometry();
+        this.loadMaterials();
         this.initScene();
         this.update = this.update.bind(this);
         requestAnimationFrame(this.update);
     }
 
     protected update() {
-        this.cube.rotation.x += 0.1;
-        this.cube.rotation.y += 0.1;
         this.render();
     }
 
@@ -62,12 +65,40 @@ export class App {
 
     private initScene() {
         this.geometry = new THREE.BoxGeometry(1, 1, 1);
-        this.material = new THREE.MeshStandardMaterial({color: 0x00ff00});
-        this.cube = new THREE.Mesh(this.geometry, this.material);
-        this.scene.add(this.cube);
-        this.light = new THREE.PointLight(0xffffff, 2, 100);
+        this.voxelMesh = new THREE.Mesh(this.geometry);
+        this.light = new THREE.DirectionalLight(0xffffff, 2);
         this.light.position.set(50, 50, 50);
         this.scene.add(this.light);
-        this.camera.position.z = 5;
+        this.camera.position.y = 5;
+        this.camera.rotation.x = -1;
+
+        for (const voxel of this.voxels) {
+            this.voxelMesh.geometry.translate(voxel.x, voxel.y, voxel.z);
+            this.voxelMesh.material = this.voxelMaterials[voxel.materialType as number];
+            this.voxelMesh.updateMatrix();
+            this.mergedGeometry.merge(
+                this.voxelMesh.geometry as THREE.Geometry, this.voxelMesh.matrix, (voxel.materialType as number) * 6,
+            );
+            this.voxelMesh.geometry.translate(-voxel.x, -voxel.y, -voxel.z);
+        }
+
+        this.mergedMesh = new THREE.Mesh(
+            new THREE.BufferGeometry().fromGeometry(this.mergedGeometry), [].concat(...this.voxelMaterials),
+        );
+        this.scene.add(this.mergedMesh);
+    }
+
+    private loadMaterials() {
+        this.voxelMaterials = [];
+
+        for (const material of MATERIAL_LIST) {
+            const materialFaces = [];
+            for (let i = 0; i < 6; i++) {
+                materialFaces.push(new THREE.MeshLambertMaterial({
+                    map: new THREE.TextureLoader().load(`${material}.${i + 1}.jpg`),
+                }));
+            }
+            this.voxelMaterials.push(materialFaces);
+        }
     }
 }

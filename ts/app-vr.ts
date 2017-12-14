@@ -1,4 +1,5 @@
 import { App } from "./app";
+import { VoxelData } from "./voxel-data";
 
 export class AppVR extends App {
     private button: HTMLElement;
@@ -6,8 +7,8 @@ export class AppVR extends App {
     private firstVRFrame: boolean;
     private vr: any;
 
-    constructor() {
-        super();
+    constructor(voxels: VoxelData[]) {
+        super(voxels);
 
         this.disabled = false;
         if (typeof VRFrameData === "undefined") {

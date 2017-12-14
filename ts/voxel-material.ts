@@ -9,3 +9,5 @@ export enum VoxelMaterial {
     Cyan,
     Black,
 }
+
+export const MATERIAL_LIST = ["grass", "dirt", "brick", "blue", "red", "green", "yellow", "cyan", "black"];

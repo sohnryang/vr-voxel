@@ -4,7 +4,8 @@ var source = require('vinyl-source-stream');
 var tsify = require("tsify");
 var paths = {
 	pages: ['*.html'],
-	stylesheets: ['css/*.css']
+	stylesheets: ['css/*.css'],
+    textures: ['textures/*.jpg']
 };
 
 gulp.task("copy-css", function () {
@@ -17,7 +18,12 @@ gulp.task("copy-html", function () {
 		.pipe(gulp.dest("bundle"));
 });
 
-gulp.task("default", ["copy-css", "copy-html"], function () {
+gulp.task("copy-textures", function () {
+	return gulp.src(paths.textures)
+		.pipe(gulp.dest("bundle"));
+});
+
+gulp.task("default", ["copy-css", "copy-html", "copy-textures"], function () {
 	return browserify({
 		basedir: '.',
 		debug: true,
