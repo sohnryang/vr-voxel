@@ -69,8 +69,7 @@ export class App {
         this.light = new THREE.DirectionalLight(0xffffff, 2);
         this.light.position.set(50, 50, 50);
         this.scene.add(this.light);
-        this.camera.position.y = 5;
-        this.camera.rotation.x = -1;
+        this.camera.position.y = 3;
 
         for (const voxel of this.voxels) {
             this.voxelMesh.geometry.translate(voxel.x, voxel.y, voxel.z);
