@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body onclick="element=document.body;if(element.requestFullscreen){element.requestFullscreen();}else if(element.mozRequestFullScreen){element.mozRequestFullScreen();}else if(element.webkitRequestFullscreen){element.webkitRequestFullscreen();}else if(element.msRequestFullscreen){element.msRequestFullscreen();}">
+    <script src="https://cdn.jsdelivr.net/npm/webvr-polyfill@0.9.41/build/webvr-polyfill.min.js"></script>
+    <script language="javascript">
+        WebVRConfig = {
+            FORCE_ENABLE_VR: true,
+            TOUCH_PANNER_DISABLED: false,
+            BUFFER_SCALE: 0.5,
+            DIRTY_SUBMIT_FRAME_BINDINGS: true,
+            ALWAYS_APPEND_POLYFILL_DISPLAY: true,
+            GET_VR_DISPLAYS_TIMEOUT: 1000
+        }
+    </script>
     <script src="bundle.js"></script>
 </body>
 </html>
