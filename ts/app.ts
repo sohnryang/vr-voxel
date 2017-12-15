@@ -26,6 +26,8 @@ export class App {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
+        this.onResize = this.onResize.bind(this);
+        window.addEventListener("resize", this.onResize, false);
         this.voxels = voxels;
         this.mergedGeometry = new THREE.Geometry();
         this.loadMaterials();

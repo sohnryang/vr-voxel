@@ -11,8 +11,10 @@ for (let i = -10; i < 10; i++) {
     }
 }
 
-if (navigator.hasOwnProperty("getVRDisplays")) {
+if (navigator.getVRDisplays !== undefined) {
     const app = new AppVR(voxels);
+    console.log("using AppVR");
 } else {
     const app = new App(voxels);
+    console.log("using App");
 }
