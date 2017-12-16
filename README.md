@@ -2,7 +2,7 @@
 
 [![License][license-badge]][license-badge-url]
 
-Voxel graphics on VR. Written in JS.
+Voxel graphics on VR. Written in TS.
 
 Inspired by [SNUGifted1/snuvoxel][0].
 
