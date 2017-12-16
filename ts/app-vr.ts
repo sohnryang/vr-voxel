@@ -103,6 +103,8 @@ export class AppVR extends App {
         this.button.textContent = "Enable VR";
         this.button.addEventListener("click", () => {
             this.toggleVR();
+            const buttonElem = document.body.querySelector(".vr-toggle");
+            buttonElem.parentNode.removeChild(buttonElem);
         });
         document.body.appendChild(this.button);
     }
